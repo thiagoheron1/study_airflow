@@ -3,7 +3,7 @@
 
 ## Minhas Anotações
 
-- Minhas anotações de estudo podem ser visualizados na Wiki deste repositório [Minhas Anotações (Wiki)]()
+- Minhas anotações de estudo estão disponíveis na Wiki [Minhas Anotações (Wiki)]()
 
 1. [Introduction Airflow](https://github.com/thiagoheron1/study_airflow/wiki/1.-Introduction-Airflow)
 2. [Airflow CLI](https://github.com/thiagoheron1/study_airflow/wiki/2.-Airflow-CLI)
