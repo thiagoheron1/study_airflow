@@ -11,6 +11,8 @@ with DAG(
    schedule_interval="@daily",
    default_args=default_args,
    catchup=False
+   # concurrency=1, # Exactly same param of dag_concurrency. (tasks in this dag)
+   # max_active_runs=1, # Exactly same param of max_active_runs_per_dag, but of this dag.
 ) as dag:
 
     task_1 = BashOperator(
