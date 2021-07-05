@@ -10,7 +10,7 @@ default_args = {
 }
 
 with DAG(
-   "parallel_dag_with_subdag.py",
+   "parallel_dag_with_subdag",
    schedule_interval="@daily",
    default_args=default_args,
    catchup=False
