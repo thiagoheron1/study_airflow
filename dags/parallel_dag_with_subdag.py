@@ -26,10 +26,10 @@ with DAG(
     )
 
     processing = SubDagOperator(
-        task_id="processign_tasks",
+        task_id="processing_tasks",
         subdag=subdag_parallel_dag(
-            "parallel_dag_with_subdag.py",
-            "processign_tasks",
+            "parallel_dag_with_subdag",
+            "processing_tasks",
             default_args
         )
     )
