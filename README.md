@@ -12,7 +12,8 @@
 5. [Use CeleryExecutor](https://github.com/thiagoheron1/study_airflow/wiki/5.-Use-CeleryExecutor)
 6. [Concurrency - Params](https://github.com/thiagoheron1/study_airflow/wiki/6.-Concurrency-Params)
 7. [SubDags x TaskGroup](https://github.com/thiagoheron1/study_airflow/wiki/7.-SubDags-x-TaskGroup)
-
+8. [XCOM](https://github.com/thiagoheron1/study_airflow/wiki/8.-XCOM)
+9. [Trigger Rules and BranchPythonOperator](https://github.com/thiagoheron1/study_airflow/wiki/9.-BranchPythonOperator-and-Trigger-Rules)
 
 ## Cursos:
 
