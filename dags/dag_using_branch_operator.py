@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.operators.dummy import DummyOperator
 from airflow.utils.task_group import TaskGroup
 
 from random import uniform
@@ -22,10 +23,15 @@ def _choose_best_model(ti):
         'processing_tasks.training_model_b',
         'processing_tasks.training_model_c'
     ])
-    print(accuracies)
+    for accuracy in accuracies:
+        if accuracy > 10:
+            return 'accurate'
+            # return ['accurate', 'inaccurate'] # WORKS!!!
+        return 'inaccurate'
     
 
-with DAG('xcom_dag', schedule_interval='@daily', default_args=default_args, catchup=False) as dag:
+
+with DAG('dag_using_branch_operator', schedule_interval='@daily', default_args=default_args, catchup=False) as dag:
 
     downloading_data = BashOperator(
         task_id='downloading_data',
@@ -49,9 +55,23 @@ with DAG('xcom_dag', schedule_interval='@daily', default_args=default_args, catc
             python_callable=_training_model
         )
 
-    choose_model = PythonOperator(
+    choose_model = BranchPythonOperator(
         task_id='task_4',
         python_callable=_choose_best_model
     )
 
+    accurate = DummyOperator(
+        task_id="accurate"
+    )
+
+    inaccurate = DummyOperator(
+        task_id="inaccurate"
+    )
+
+    storing = DummyOperator(
+        task_id="storing",
+        trigger_rule="none_failed_or_skipped"
+    )
+
     downloading_data >> processing_tasks >> choose_model
+    choose_model >> [accurate, inaccurate] >> storing
